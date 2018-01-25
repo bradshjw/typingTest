@@ -1,0 +1,15 @@
+
+body {
+  color: aliceblue;
+}
+
+#layout {
+  padding: 0;
+  margin: auto;
+  width: 1024px;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+}
