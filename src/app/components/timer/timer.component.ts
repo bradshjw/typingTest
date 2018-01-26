@@ -1,7 +1,7 @@
 
 import { Component, OnInit } from "@angular/core";
-import { TypingService } from "../../services/typing.service";
 import { Observable, Subscription } from "rxjs/RX";
+import { TimerService } from "../../services/timer.service";
 
 @Component({
   selector: "app-timer",
@@ -9,13 +9,11 @@ import { Observable, Subscription } from "rxjs/RX";
   styleUrls: ["./timer.component.css"]
 })
 export class TimerComponent implements OnInit {
-  ticks = 0;
-  start = 0;
   minutes = 0;
   seconds = 0;
   sub: Subscription;
-  constructor(private typingService: TypingService) {
-    this.typingService.startTimerCalled.subscribe((res: any) => {
+  constructor(private timerService: TimerService) {
+    this.timerService.startTimerCalled.subscribe((res: any) => {
       if (res === "begin") {
         this.startTimer();
       } else if (res === "end") {
@@ -29,20 +27,19 @@ export class TimerComponent implements OnInit {
   }
 
   private startTimer() {
-    if (this.ticks === 0) {
+    if (this.timerService.ticks === 0) {
       const timer = Observable.timer(1, 1000);
       this.sub = timer.subscribe(t => {
-        this.ticks = t;
-        this.seconds = this.getSeconds(this.ticks);
-        this.minutes = this.getMinutes(this.ticks);
+        this.timerService.ticks = t;
+        this.seconds = this.getSeconds(this.timerService.ticks);
+        this.minutes = this.getMinutes(this.timerService.ticks);
       });
     }
 
   }
 
   private stopTimer() {
-    this.start = 0;
-    this.ticks = 0;
+    this.timerService.ticks = 0;
     if (this.sub) {
       this.sub.unsubscribe();
     }

@@ -1,1 +1,104 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+.dark-primary-color {
+  background: #455A64;
+}
+
+.default-primary-color {
+  background: #607D8B;
+}
+
+.light-primary-color {
+  background: #CFD8DC;
+}
+
+.text-primary-color {
+  color: #FFFFFF;
+}
+
+.accent-color {
+  background: #FF5722;
+}
+
+.primary-text-color {
+  color: #212121;
+}
+
+.secondary-text-color {
+  color: #757575;
+}
+
+.divider-color {
+  border-color: #BDBDBD;
+}
+
+.header-shadow {
+  height: 20px;
+  background: #455A64;
+}
+
+.form-container {
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-row {
+  display: inline-flex;
+  align-items: center;
+}
+
+.highlight {
+  background-color: yellow;
+}
+
+header {
+  background-color: #607D8B;
+  color: #FFFFFF;
+  height: 100px;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+nav {
+  padding-left: 10px;
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+}
+
+body {
+  background: #fff;
+  margin: 0;
+  color: #212121;
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+h2 {
+  font-size: 1.2em;
+}
+
+.mat-raised-button {
+  margin-right: 10px !important;
+}
+
+.mat-raised-button.mat-accent {
+  background-color: #FF5722;
+}
+
+.mat-input-element {
+  color: #212121;
+}
+
+.mat-focused .mat-form-field-label {
+  color: #FF5722;
+}
+
+.mat-form-field-ripple {
+  background-color: #FF5722;
+}
+
+.mat-form-field {
+  display: block !important;
+}

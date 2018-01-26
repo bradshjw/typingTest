@@ -1,7 +1,3 @@
-body {
-  color: aliceblue;
-}
-
 #layout {
   padding: 0;
   margin: auto;
@@ -16,7 +12,7 @@ main {
 }
 
 aside {
-  background-color: aqua;
+  background-color: #CFD8DC;
   width: 250px;
   height: 100%;
   display: block;
@@ -24,9 +20,7 @@ aside {
   top: 0;
   right: 0;
   padding: 5px;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: inherit;
-  font-weight: 400;
+  font-family: 'Roboto', 'Open Sans', sans-serif;
+  font-size: 1em;
   line-height: 1.125;
-  color: rgba(0, 0, 0, .54);
 }

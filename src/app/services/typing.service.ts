@@ -6,14 +6,18 @@ import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class TypingService {
-  private randomTextUri = "http://www.randomtext.me/api/gibberish/p-3/25-45";
-  private timerComponent = new Subject<any>();
-  timerHasStarted = false;
-  startTimerCalled = this.timerComponent.asObservable();
+  private randomTextUri = "https://baconipsum.com/api/?type=all-meat&sentences=5";
+  typingComplete = false;
   sourceCharLength: number;
   sourceWordCount: number;
   liveWordCount: number;
   liveCharLength: number;
+  private sourceComponent = new Subject<any>();
+  sourceComponentCalled = this.sourceComponent.asObservable();
+  sourceText: string;
+  private inputComponent = new Subject<any>();
+  inputComponentCalled = this.inputComponent.asObservable();
+  inputText: string;
 
   constructor(private http: HttpClient) {
     this.sourceCharLength = 0;
@@ -26,20 +30,28 @@ export class TypingService {
     return this.http.get(this.randomTextUri);
   }
 
-  startTimer() {
-    if (!this.timerHasStarted) {
-      this.timerComponent.next("begin");
-      this.timerHasStarted = true;
-    }
-  }
-
-  stopTimer() {
-    this.timerComponent.next("end");
-    this.timerHasStarted = false;
-  }
-
   private handleError(operation: string): void {
 
     console.error("${operation} failed");
+  }
+
+  getSourceText(): string {
+    this.sourceComponent.next("get");
+    return this.sourceText;
+  }
+
+  getInputText(): string {
+    this.inputComponent.next("get");
+    return this.inputText;
+  }
+
+  setSourceText(newValue) {
+    this.sourceText = newValue;
+    this.sourceComponent.next("set");
+  }
+
+  setInputText(newValue) {
+    this.inputText = newValue;
+    this.inputComponent.next("set");
   }
 }

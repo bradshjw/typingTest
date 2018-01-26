@@ -1,12 +1,12 @@
 <div>
-  <h1>Start typing sample text to begin test</h1>
+  <h2>Start typing source text to begin test</h2>
   <app-timer></app-timer>
   <span>Word count: {{typingService.liveWordCount}}</span>
-  <div>
+  <div *ngIf="typingService.typingComplete">
     <h2>Results</h2>
-    <span>Words per minute: {{wpm}}</span>
-    <span>Correct words per minute: {{cwpm}}</span>
-    <span>Error Ratio: {{errorRatio}}</span>
+    <div>Words per minute: {{wpm}}</div>
+    <div>Correct words per minute: {{cwpm}}</div>
+    <div>Error %: {{errorRatio}}</div>
   </div>
 
 </div>

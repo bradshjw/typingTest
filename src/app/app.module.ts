@@ -12,6 +12,7 @@ import { InputComponent } from "./components/input-pane/input.component";
 import { SideComponent } from "./components/side-pane/side.component";
 import { TypingService } from "./services/typing.service";
 import { TimerComponent } from "./components/timer/timer.component";
+import { TimerService } from "./services/timer.service";
 
 
 
@@ -32,7 +33,7 @@ import { TimerComponent } from "./components/timer/timer.component";
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [TypingService],
+  providers: [TypingService, TimerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

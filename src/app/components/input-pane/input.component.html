@@ -2,5 +2,7 @@
   <mat-form-field class="input-pane">
     <textarea #typingInput matInput placeholder="{{placeholder}}" matTextareaAutosize matAutosizeMinRows="2" (keydown)="keydown($event)"></textarea>
   </mat-form-field>
-  <button class="btn" mat-raised-button (click)="stopTimer()">Stop</button>
+  <div class="btn-row">
+    <button class="btn" mat-raised-button (click)="stopTimer()">Stop</button>
+  </div>
 </div>
