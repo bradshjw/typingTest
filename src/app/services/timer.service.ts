@@ -11,6 +11,7 @@ export class TimerService {
 
   constructor() { }
 
+  // start the timer
   startTimer() {
     if (!this.timerHasStarted) {
       this.timerComponent.next("begin");
@@ -18,8 +19,15 @@ export class TimerService {
     }
   }
 
+  // stop the timer
   stopTimer() {
     this.timerComponent.next("end");
     this.timerHasStarted = false;
+  }
+
+  // reset the timer
+  resetTimer() {
+    this.timerHasStarted = false;
+    this.timerComponent.next("reset");
   }
 }

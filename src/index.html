@@ -1,17 +1,76 @@
 <!doctype <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Typing Test</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto:300" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Typing Test</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300|Roboto:300" rel="stylesheet">
+  </head>
 
-<body>
-  <app-root>Loading...</app-root>
-</body>
+  <body>
+    <app-root>
+      <style type="text/css">
+        #pre-bootstrap {
+          background-color: #262626;
+          bottom: 0px;
+          left: 0px;
+          position: fixed;
+          right: 0px;
+          top: 0px;
+          z-index: 999999;
+        }
+
+        #pre-bootstrap div.messaging {
+          color: #FFFFFF;
+          font-family: monospace;
+          left: 0px;
+          margin-top: -37px;
+          position: absolute;
+          right: 0px;
+          text-align: center;
+          top: 50%;
+        }
+
+        #pre-bootstrap h1 {
+          font-size: 26px;
+          line-height: 35px;
+          margin: 0px 0px 20px 0px;
+        }
+
+        #pre-bootstrap p {
+          font-size: 18px;
+          line-height: 14px;
+          margin: 0px 0px 0px 0px;
+        }
+
+        #seconds {
+          font-size: 52px;
+        }
+      </style>
+
+      <script>
+        let timer = 5;
+        let x = setInterval(() => {
+          if (timer >= 0 && document.getElementById("seconds")) {
+            document.getElementById("seconds").innerHTML = timer;
+            timer--;
+          } else {
+            clearInterval(x);
+          }
+        }, 1000);
+      </script>
+
+      <div id="pre-bootstrap">
+        <div class="messaging">
+          <div id="seconds">5</div>
+          <h1>App is Loading </h1>
+          <p>Please stand by, or you can just Google for a typing test if you're feeling impatient.</p>
+        </div>
+      </div>
+    </app-root>
+  </body>
 
 </html>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { TypingService } from "../../services/typing.service";
 import { TimerService } from "../../services/timer.service";
+import { HttpErrorResponse } from "@angular/common/http/src/response";
 
 @Component({
   selector: "app-source-pane",
@@ -8,41 +9,33 @@ import { TimerService } from "../../services/timer.service";
   styleUrls: ["./source.component.css"]
 })
 export class SourceComponent implements OnInit {
-  sourceText: string;
   manualInput: boolean;
-  constructor(private typingService: TypingService, private timerService: TimerService) {
-    this.typingService.sourceComponentCalled.subscribe((res) => {
-      if (res === "get") {
-        this.typingService.sourceText = this.sourceText;
-      } else if (res === "set") {
-        this.sourceText = this.typingService.sourceText;
-      }
+  constructor(public typingService: TypingService, public timerService: TimerService) { }
 
-    });
-  }
-
+  // by default, manual input will be enabled
   ngOnInit(): void {
-    this.sourceText = "";
     this.manualInput = true;
   }
 
+  // user can select to auto-generate source text
+  // doing so will change the manual input flag
   generateText(): void {
     this.typingService.getGibberish().subscribe(data => {
       this.manualInput = false;
-      this.sourceText = data;
-      this.typingService.sourceCharLength = this.sourceText.length;
-      const wordsArray = this.sourceText.split(" ");
-      this.typingService.sourceWordCount = wordsArray.length;
+      this.typingService.sourceText = data.toString();
+    }, (err: HttpErrorResponse) => {
+      if (err.error instanceof Error) {
+        this.typingService.handleError("getGibberish", err.error.message);
+      } else {
+        this.typingService.handleError("getGibberish", "status code ${err.status}");
+      }
     });
   }
 
-  onKeypress(event: KeyboardEvent) {
-    this.typingService.sourceCharLength = this.sourceText.length;
-  }
-
+  // clearing the source text
   clear(): void {
     this.manualInput = true;
-    this.sourceText = "";
+    this.typingService.sourceText = "";
   }
 
 }

@@ -1,35 +1,4 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-.dark-primary-color {
-  background: #455A64;
-}
-
-.default-primary-color {
-  background: #607D8B;
-}
-
-.light-primary-color {
-  background: #CFD8DC;
-}
-
-.text-primary-color {
-  color: #FFFFFF;
-}
-
-.accent-color {
-  background: #FF5722;
-}
-
-.primary-text-color {
-  color: #212121;
-}
-
-.secondary-text-color {
-  color: #757575;
-}
-
-.divider-color {
-  border-color: #BDBDBD;
-}
 
 .header-shadow {
   height: 20px;
@@ -37,18 +6,22 @@
 }
 
 .form-container {
-  padding: 15px 0;
+  padding: 15px 0 15px 20px;
   display: flex;
   flex-direction: column;
+  border-left: #BDBDBD 5px solid;
+  border-bottom: #BDBDBD 5px solid;
+  margin-top: 10px;
 }
 
 .btn-row {
   display: inline-flex;
   align-items: center;
+  padding-top: 5px;
 }
 
 .highlight {
-  background-color: yellow;
+  background-color: #ff4436;
 }
 
 header {
@@ -84,7 +57,7 @@ h2 {
 }
 
 .mat-raised-button.mat-accent {
-  background-color: #FF5722;
+  background-color: #03A9F4;
 }
 
 .mat-input-element {
@@ -92,11 +65,11 @@ h2 {
 }
 
 .mat-focused .mat-form-field-label {
-  color: #FF5722;
+  color: #757575;
 }
 
 .mat-form-field-ripple {
-  background-color: #FF5722;
+  background-color: #757575;
 }
 
 .mat-form-field {

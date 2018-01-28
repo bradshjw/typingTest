@@ -6,52 +6,33 @@ import { Subject } from "rxjs/Subject";
 
 @Injectable()
 export class TypingService {
+  // hard-coded api url
+  // before going to production environment, the api url should be
+  // in some config file and the parameters should be configurable
+  // from the UI
   private randomTextUri = "https://baconipsum.com/api/?type=all-meat&sentences=5";
   typingComplete = false;
-  sourceCharLength: number;
   sourceWordCount: number;
   liveWordCount: number;
   liveCharLength: number;
-  private sourceComponent = new Subject<any>();
-  sourceComponentCalled = this.sourceComponent.asObservable();
   sourceText: string;
-  private inputComponent = new Subject<any>();
-  inputComponentCalled = this.inputComponent.asObservable();
   inputText: string;
 
   constructor(private http: HttpClient) {
-    this.sourceCharLength = 0;
     this.sourceWordCount = 0;
     this.liveWordCount = 0;
     this.liveCharLength = 0;
+    this.sourceText = "";
+    this.inputText = "";
   }
 
+  // make API call to get random text
   getGibberish(): Observable<Object> {
     return this.http.get(this.randomTextUri);
   }
 
-  private handleError(operation: string): void {
-
-    console.error("${operation} failed");
-  }
-
-  getSourceText(): string {
-    this.sourceComponent.next("get");
-    return this.sourceText;
-  }
-
-  getInputText(): string {
-    this.inputComponent.next("get");
-    return this.inputText;
-  }
-
-  setSourceText(newValue) {
-    this.sourceText = newValue;
-    this.sourceComponent.next("set");
-  }
-
-  setInputText(newValue) {
-    this.inputText = newValue;
-    this.inputComponent.next("set");
+  // error handling
+  handleError(operation: string, message: string): void {
+    console.error("${operation} failed with message: ${message}");
   }
 }

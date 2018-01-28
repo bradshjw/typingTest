@@ -10,7 +10,8 @@ import { TimerService } from "../../services/timer.service";
 export class SideComponent implements OnInit {
   wpm = 0;
   cwpm = 0;
-  constructor(private timerService: TimerService, private typingService: TypingService) {
+  errorRatio: string;
+  constructor(private timerService: TimerService, public typingService: TypingService) {
     this.timerService.startTimerCalled.subscribe((res: any) => {
       if (res === "begin") {
         // do nothing
@@ -20,9 +21,10 @@ export class SideComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  // analyzes user's input to calculate words per minute
+  // and accuracy
   runAnalysis(): void {
     const totalWords = this.typingService.liveWordCount;
     const elapsedSeconds = this.timerService.ticks;
@@ -31,19 +33,22 @@ export class SideComponent implements OnInit {
     this.calculateAccuracy(totalWords, elapsedSeconds);
   }
 
+  // accuracy helper function
   private calculateAccuracy(baseWordCount, elapsedSeconds) {
-    let sourceText = this.typingService.getSourceText();
-    let inputText = this.typingService.getInputText();
+    let sourceText = this.typingService.sourceText;
+    let inputText = this.typingService.inputText;
     let errorCount = 0;
 
-    const sourceArray = sourceText.split(" ");
-    const inputArray = inputText.split(" ");
+    // split the source and input strings
+    const sourceArray = sourceText.split(/[ |\r\n]+/);
+    const inputArray = inputText.split(/[ |\r\n]+/);
 
-    // span element wrappings
+    // span element wrappings to indicate errors
     const spanPre = "<span class=\"highlight\">";
     const spanPost = "</span>";
 
     for (const i in sourceArray) {
+      // if the input doesn't match the source...
       if (sourceArray[i] !== inputArray[i]) {
         // add html to wrap word to highlight it for both source and input
         sourceArray[i] = spanPre + sourceArray[i] + spanPost;
@@ -52,17 +57,20 @@ export class SideComponent implements OnInit {
       }
     }
 
+    // calculate correct words per minute and error ratio
     const rawCwpm = ((baseWordCount - errorCount) * 60) / elapsedSeconds;
     this.cwpm = this.precisionRound(rawCwpm, 2);
+    this.errorRatio = (baseWordCount - errorCount) + " / " + baseWordCount;
 
     // let's put it back together again
     sourceText = sourceArray.join(" ");
     inputText = inputArray.join(" ");
 
-    // this.typingService.setSourceText(sourceText);
-    // this.typingService.setInputText(inputText);
+    // reset the input text with appropriate highlighting
+    this.typingService.inputText = inputText;
   }
 
+  // rounds decimals to any precision
   private precisionRound(num, precision): number {
     const factor = Math.pow(10, precision);
     return Math.round(num * factor) / factor;

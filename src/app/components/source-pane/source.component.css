@@ -1,7 +1,7 @@
-.source-text {
+.source-input {
   font-family: 'Roboto', 'Open Sans', sans-serif;
   font-weight: 400;
-  line-height: 1.125;
+  line-height: 1.25;
 }
 
 .source-input:disabled {

@@ -13,6 +13,7 @@ import { SideComponent } from "./components/side-pane/side.component";
 import { TypingService } from "./services/typing.service";
 import { TimerComponent } from "./components/timer/timer.component";
 import { TimerService } from "./services/timer.service";
+import { ApplicationRef } from "@angular/core/src/application_ref";
 
 
 
@@ -34,6 +35,13 @@ import { TimerService } from "./services/timer.service";
     MatInputModule
   ],
   providers: [TypingService, TimerService],
-  bootstrap: [AppComponent]
+  entryComponents: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  ngDoBootstrap(app: ApplicationRef) {
+    // delay bootstrap by 5 seconds, so I can attempt to be cheeky
+    setTimeout(() => {
+      app.bootstrap(AppComponent);
+    }, 5000);
+  }
+}

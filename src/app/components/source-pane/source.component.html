@@ -1,12 +1,11 @@
 <div class="form-container">
   <div *ngIf="manualInput">
     <mat-form-field>
-      <textarea matInput [(ngModel)]="sourceText" placeholder="Enter your source text or click the generate button" matTextareaAutosize
-        matAutosizeMinRows="2" (keypress)="onKeypress($event)" [attr.disabled]="timerService.timerHasStarted ? true : null"
-        class="source-input"></textarea>
+      <textarea matInput [(ngModel)]="typingService.sourceText" placeholder="Enter your source text or click the generate button"
+        matTextareaAutosize matAutosizeMinRows="2" [attr.disabled]="timerService.timerHasStarted ? true : null" class="source-input"></textarea>
     </mat-form-field>
   </div>
-  <div *ngIf="!manualInput" [innerHTML]="sourceText" class="source-text"></div>
+  <div *ngIf="!manualInput" [innerHTML]="typingService.sourceText" class="source-input"></div>
 
   <div class="btn-row">
     <button class="btn" [attr.disabled]="timerService.timerHasStarted ? true : null" mat-raised-button color="accent" (click)="generateText()">Generate Source Text</button>

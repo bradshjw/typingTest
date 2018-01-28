@@ -12,14 +12,14 @@ main {
 }
 
 aside {
-  background-color: #CFD8DC;
+  background-color: #BDBDBD;
   width: 250px;
   height: 100%;
   display: block;
   position: absolute;
   top: 0;
   right: 0;
-  padding: 5px;
+  padding: 0px 10px;
   font-family: 'Roboto', 'Open Sans', sans-serif;
   font-size: 1em;
   line-height: 1.125;
