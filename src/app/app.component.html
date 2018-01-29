@@ -7,10 +7,14 @@
 </header>
 <div id="layout">
   <main>
-    <app-source-pane></app-source-pane>
-    <app-input-pane></app-input-pane>
+    <mat-card>
+      <app-source-pane></app-source-pane>
+    </mat-card>
+    <mat-card>
+      <app-input-pane></app-input-pane>
+    </mat-card>
   </main>
-  <aside>
+  <aside class="mat-card">
     <app-side-pane></app-side-pane>
   </aside>
 

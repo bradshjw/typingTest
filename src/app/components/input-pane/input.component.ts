@@ -72,16 +72,17 @@ export class InputComponent implements OnInit, AfterViewInit {
     // if the character count for the source and the user's input are the same,
     // then we are done
     if (this.typingService.sourceText.length === this.typingService.liveCharLength) {
+      this.calculateWordCount(this.typingService.inputText);
       this.stopTimer();
       this.typingService.typingComplete = true;
-      this.calculateWordCount(this.typingService.inputText);
     }
   }
 
   // helper function for calculating word count
   private calculateWordCount(rawText: string): void {
     // split on space or new line
-    const strArray = rawText.split(/[ |\r\n]+/);
+    const strArray = rawText.trim().split(/[ |\r\n]+/);
+    console.log(strArray);
     this.typingService.liveWordCount = strArray.length;
   }
 

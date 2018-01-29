@@ -1,7 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
-import { MatButtonModule, MatFormFieldModule, MatInputModule } from "@angular/material";
+import { MatButtonModule, MatFormFieldModule, MatInputModule, MatCardModule } from "@angular/material";
 import { HttpClientModule } from "@angular/common/http";
 import { FormsModule } from "@angular/forms";
 
@@ -31,6 +31,7 @@ import { ApplicationRef } from "@angular/core/src/application_ref";
     FormsModule,
     HttpClientModule,
     MatButtonModule,
+    MatCardModule,
     MatFormFieldModule,
     MatInputModule
   ],

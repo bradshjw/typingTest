@@ -1,5 +1,4 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
-
 .header-shadow {
   height: 20px;
   background: #455A64;
@@ -9,8 +8,6 @@
   padding: 15px 0 15px 20px;
   display: flex;
   flex-direction: column;
-  border-left: #BDBDBD 5px solid;
-  border-bottom: #BDBDBD 5px solid;
   margin-top: 10px;
 }
 
@@ -74,4 +71,8 @@ h2 {
 
 .mat-form-field {
   display: block !important;
+}
+
+.mat-card {
+  margin-bottom: 5px;
 }
