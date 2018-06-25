@@ -1,6 +1,6 @@
 # Typing Test Challenge
 
-A coding challenge from Greenway Health. Built using Typescript, Angular, and Angular Material.
+Built using Typescript, Angular, and Angular Material.
 
 ## Getting Started
 
